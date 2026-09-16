@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JetJoe Turbojet Lab — Isaac Sheard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="../index.html">isaac<span>.</span>sheard</a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../about.html">About</a>
+      <a class="resume-link" href="../assets/resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="project-hero wrap">
+    <div class="breadcrumb"><a href="../projects.html">Projects</a> / JetJoe Turbojet Lab</div>
+    <span class="tag">MIT Unified Engineering · Spring – Fall 2026</span>
+    <h1>JetJoe Turbojet: Model vs. Test</h1>
+    <p class="summary">
+      Built a Brayton-cycle thermodynamic model for a JJ-1400 turbojet engine with "The
+      Millennium Falcons" (Team #5), then assembled, dry-ran, and live-fired the real engine on
+      an instrumented test stand to see how the model held up against measured thrust, mass
+      flow, and turbine temperatures — then used the results to estimate range and efficiency
+      for a notional aircraft.
+    </p>
+    <div class="meta-bar">
+      <div class="item"><span class="label">Role</span><span class="value">Cycle Modeling &amp; Thrust/Efficiency Analysis, Engine Assembly &amp; Testing</span></div>
+      <div class="item"><span class="label">Timeline</span><span class="value">Spring – Fall 2026</span></div>
+      <div class="item"><span class="label">Team</span><span class="value">The Millennium Falcons (Team #5) — Isaac Sheard, Juan Orrego, Rakeem McFarlane, Luke Pelletier</span></div>
+      <div class="item"><span class="label">Tools</span><span class="value">Brayton cycle modeling, control-volume/momentum analysis, thrust stand, Hall-effect RPM sensing</span></div>
+    </div>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">01</span>
+    <h2>The Problem</h2>
+    <p>The goal was to predict a small turbojet's real performance — thrust, mass flow, fuel
+       consumption, turbine temperatures — from first principles before ever firing it, then see
+       how well an idealized Brayton-cycle model held up against actual measured data across a
+       full range of throttle settings. That comparison is as much about where a textbook cycle
+       model breaks down against real losses (finite compressor/turbine efficiency, heat
+       transfer, non-ideal expansion) as it is about the engine itself.</p>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">02</span>
+    <h2>Approach</h2>
+    <p>In Part A, we derived the full Brayton-cycle turbojet model: a momentum-based thrust
+       equation from a control-volume derivation, the mass flow relation through the choked
+       inlet, a shaft-work balance between the turbine and compressor to back out turbine inlet
+       temperature, and nondimensional forms of specific thrust and specific fuel consumption —
+       all built from the engine's measured geometry (compressor/turbine blade angles, radii,
+       flow areas). In Part B, we physically disassembled and reassembled the engine, measured
+       the real geometric parameters directly off the hardware (nozzle guide vane exit angle,
+       turbine rotor exit blade angle, turbine throat area), and ran a "dry-run" spin-up/coast-down
+       test with no combustion to check shaft alignment and bearing health by timing how long the
+       rotor coasted after the starter disengaged. In Part D, we ran the engine for real on an
+       instrumented test stand across five operating points — pre-test, idle, an intermediate
+       speed, max speed (~160,000 rpm), and post-test — recording thrust, fuel flow, pressures,
+       and temperatures, then processed the data two ways: a "direct assessment" straight from
+       measured pressures and thrust, and a "thermodynamic assessment" that back-calculated
+       compressor efficiency, turbine inlet temperature, and jet velocity from the cycle model,
+       and compared both against our original Part A prediction.</p>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">03</span>
+    <h2>What I Built</h2>
+    <p>I derived the thrust equation for the whole engine from a first-principles momentum and
+       control-volume analysis, and worked through the specific-thrust and specific-fuel-consumption
+       derivations, including their nondimensional forms. I also worked through the turbine-inlet-
+       temperature relation from a shaft-work balance between the compressor and turbine. During
+       the physical build, I helped assemble and disassemble the engine, took the direct
+       geometric measurements (nozzle guide vane exit angle, turbine blade exit angle, turbine
+       throat area) used to define the model, and helped run the coast-down test that verified
+       shaft alignment before live-fire testing.</p>
+    <div class="media-grid">
+      <figure style="margin:0;">
+        <img src="../assets/projects/jetjoe-engine-assembled.jpg" alt="Assembled JJ-1400 turbojet engine on a table, ready for testing.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Assembled JJ-1400, ready for testing</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/jetjoe-engine-closeup.jpg" alt="Close-up of the engine's compressor inlet and nozzle during assembly.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Compressor inlet and nozzle, close-up</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/jetjoe-run-sheet.jpg" alt="Handwritten live-fire test run sheet recording thrust, pressures, and temperatures up to 160,000 rpm.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Live-fire test run sheet, up to 160,000 rpm</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/jetjoe-thrust-vs-altitude.png" alt="Plot of static thrust versus altitude for the JJ-1400 engine.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Static thrust vs. altitude, notional aircraft</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">04</span>
+    <h2>Results &amp; What I Learned</h2>
+    <p>The model landed close on some figures and further off on others once checked against
+       real data — our modeled specific thrust (0.741) undershot the measured "direct" value
+       (0.914) and was well below the "thermodynamic" estimate (2.06) at max speed, and our
+       predicted turbine inlet temperature (716 K) came in well under the thermodynamic estimate
+       (1137 K). That gap is a good illustration of how much real losses matter that an idealized
+       cycle model doesn't fully capture — our initial "for now" compressor efficiency assumption
+       of 70% turned out to be optimistic. Live-fire testing reached about 160,000 rpm with a
+       clean coast-down (no rubbing or alignment issues), confirming the assembly was sound.
+       Using the measured specific fuel consumption at intermediate speed, we estimated a Breguet
+       range of roughly 121 km and an overall propulsive efficiency of about 0.34% for a notional
+       small aircraft using this engine — low, as expected for a small turbojet that trades
+       efficiency for a high-velocity, low-mass-flow exhaust jet.</p>
+  </section>
+
+  <div class="wrap project-nav">
+    <a href="uefc-flight-competition.html" class="btn secondary">← UEFC Flight Competition</a>
+    <a href="autonomous-machines-startrek.html" class="btn secondary">Next: Autonomous Machines: Star Trek →</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <span>&copy; 2026 Isaac Sheard — Fairmont, MN &rarr; Cambridge, MA.</span>
+    <div class="footer-links">
+      <a href="mailto:isaac.sheard3@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/isaac-sheard/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/IsaacSheard" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

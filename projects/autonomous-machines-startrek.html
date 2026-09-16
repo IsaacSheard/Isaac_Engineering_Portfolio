@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autonomous Machines: Star Trek Adventure — Isaac Sheard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="../index.html">isaac<span>.</span>sheard</a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../about.html">About</a>
+      <a class="resume-link" href="../assets/resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="project-hero wrap">
+    <div class="breadcrumb"><a href="../projects.html">Projects</a> / Autonomous Machines: Star Trek Adventure</div>
+    <span class="tag">MIT 16.632B · Spring 2026</span>
+    <h1>Star Trek Adventure — 2nd Place, $125 Prize</h1>
+    <p class="summary">
+      Solo-designed, built, and programmed an autonomous/manual rover for 16.632B's head-to-head
+      "Star Trek Adventure" gameboard competition — retrieving communicators, powering a shuttle
+      takeoff, running a tricorder, and outmaneuvering an opponent under a hard 3-minute clock.
+      Placed 2nd overall individually and won a $125 prize.
+    </p>
+    <div class="meta-bar">
+      <div class="item"><span class="label">Role</span><span class="value">Individual project — strategy, mechanism design, chassis redesign, autonomy</span></div>
+      <div class="item"><span class="label">Timeline</span><span class="value">Spring 2026</span></div>
+      <div class="item"><span class="label">Course</span><span class="value">16.632B, Introduction to Autonomous Machines II</span></div>
+      <div class="item"><span class="label">Tools</span><span class="value">Onshape CAD, line-tracking sensor, IMU, wheel encoders</span></div>
+    </div>
+  </section>
+
+  <figure style="margin:0;" class="wrap">
+    <img src="../assets/projects/startrek-isaac-portrait.jpg" alt="Isaac holding his rover in the shop, with the Star Trek Adventure gameboard behind him." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+    <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">With the finished rover and the Star Trek Adventure gameboard</figcaption>
+  </figure>
+
+  <section class="content-block wrap">
+    <span class="num">01</span>
+    <h2>The Problem</h2>
+    <p>The "Star Trek Adventure" gameboard scores two robots head-to-head over a 3-minute round
+       across six challenges — retrieving communicators and dilithium crystals, dropping spheres
+       to open a cave door, cranking a shuttle takeoff mechanism, pressing tricorder buttons and
+       rotating its dial, and locating or blocking a roaming "Klingon." Every challenge can be
+       run manually or autonomously, and autonomous manipulation scores double points, with
+       separate points for autonomous navigation to each station. Every student built and
+       programmed their own robot individually and competed head-to-head in a bracket. My robot
+       needed a mechanism that could actuate both the shuttle crank and the tricorder dial
+       without changing its overall height, a chassis that turned predictably enough for reliable
+       autonomous routes, and a strategy that actually maximized score rather than just checking
+       every box.</p>
+  </section>
+
+  <figure style="margin:0;" class="wrap">
+    <img src="../assets/projects/startrek-gameplay.jpg" alt="A round in progress on the Star Trek Adventure gameboard." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+    <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">A round in progress on the gameboard</figcaption>
+  </figure>
+
+  <section class="content-block wrap">
+    <span class="num">02</span>
+    <h2>Approach</h2>
+    <p>Before building anything, I laid out the full point-value breakdown for every challenge —
+       manual points, autonomous-navigation points, and fully-autonomous totals with the 2x
+       manipulation multiplier — to let the numbers drive the strategy instead of guessing. That
+       analysis showed the Shuttle (1,880 pts) and Tricorder (1,820 pts) challenges had by far the
+       highest ceiling, so I built a "Shuttle-First" high-risk/high-reward strategy: race to grab
+       both single-capture challenges autonomously before my opponent could, with a fallback plan
+       (Communicator + Dilithium consolidation, geographically clustered to minimize navigation
+       overhead) if the shuttle looked contested. I backed the timeline with distance/speed math
+       (tiles per second at candidate robot speeds) to set concrete manipulation-time budgets — 15
+       seconds for the shuttle crank, 20 seconds for the tricorder. On the hardware side, I
+       designed a single combined motor mechanism to drive both the shuttle crank and the
+       tricorder dial without adjusting the robot's height, working through the CAD dimensioning
+       and verifying the alignment in an Onshape assembly. I then redesigned the chassis to move
+       electronics to a rear panel (freeing the top surface for manipulator components) and
+       switched from the original AMBot's rotating-wheel steering to four-wheel drive for more
+       predictable, lower-sweep-variation autonomous turns.</p>
+  </section>
+
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+    <figure style="margin:0;">
+      <img src="../assets/projects/startrek-mechanism-dimensioning.png" alt="CAD dimensioning sketch for the combined shuttle/tricorder actuation mechanism." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+      <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">CAD dimensioning for the combined mechanism</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="../assets/projects/startrek-chassis-cad.png" alt="CAD model of the redesigned four-wheel-drive chassis." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+      <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Redesigned four-wheel-drive chassis</figcaption>
+    </figure>
+  </div>
+
+  <section class="content-block wrap">
+    <span class="num">03</span>
+    <h2>What I Built</h2>
+    <p>I quantified the full scoring model for every challenge to drive the strategy decision, then
+       designed and CAD'd a combined shuttle-crank/tricorder-dial actuation mechanism that worked
+       at a single fixed height, catching in testing that the shuttle actuation was far too slow
+       (about 4 minutes 50 seconds) and would need faster motors or a gear reduction. I redesigned
+       the chassis for four-wheel drive and rear-mounted electronics, added multiple mounting hole
+       patterns for flexible actuator placement, and built two different wheel-placement
+       configurations. I programmed the autonomous navigation stack — line-tracking sensor, IMU,
+       and wheel encoders — to execute the chosen route and manipulate each challenge within the
+       competition's 3-minute rounds.</p>
+  </section>
+
+  <figure style="margin:0;" class="wrap">
+    <img src="../assets/projects/startrek-fixing-robot.jpg" alt="Isaac assembling and wiring the rover's manipulator on the bench." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+    <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Assembling and wiring the rover</figcaption>
+  </figure>
+
+  <section class="content-block wrap">
+    <span class="num">04</span>
+    <h2>Results &amp; What I Learned</h2>
+    <p>I placed 2nd overall individually in the tournament, winning a $125 prize. Laying out the full
+       scoring model before building anything paid off — it turned "which challenges should I
+       target" from a gut call into a quantified decision, and the shuttle/tricorder racing
+       strategy captured the highest-value points on the board. The biggest lesson came from
+       testing: the combined actuation mechanism worked geometrically, but was drastically
+       underpowered for the shuttle's crank, a reminder that a mechanism that "works" in CAD and
+       in a slow bench test still has to hit a hard time budget in competition, which pushed the
+       chassis redesign toward simpler, more predictable four-wheel-drive motion so the navigation
+       side of the strategy could stay reliable even as the manipulator side was still catching
+       up.</p>
+  </section>
+
+  <div class="wrap project-nav">
+    <a href="jetjoe-turbojet.html" class="btn secondary">← JetJoe Turbojet Lab</a>
+    <a href="stealth-startup-rovers.html" class="btn secondary">Next: Stealth Robotics Startup →</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <span>&copy; 2026 Isaac Sheard — Fairmont, MN &rarr; Cambridge, MA.</span>
+    <div class="footer-links">
+      <a href="mailto:isaac.sheard3@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/isaac-sheard/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/IsaacSheard" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

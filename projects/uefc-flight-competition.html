@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UEFC Flight Competition — Isaac Sheard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="../index.html">isaac<span>.</span>sheard</a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../about.html">About</a>
+      <a class="resume-link" href="../assets/resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="project-hero wrap">
+    <div class="breadcrumb"><a href="../projects.html">Projects</a> / UEFC Flight Competition</div>
+    <span class="tag">MIT Unified Engineering · Spring – Fall 2026</span>
+    <h1>Design, Build, Fly — 5th Place Overall</h1>
+    <p class="summary">
+      Teamed up with three classmates as "The Millennium Falcons" (Team #5) in MIT's Unified
+      Engineering Flight Competition — sizing, analyzing, building, and flying a competition RC
+      airplane from scratch, trading off nominal flight speed against payload CG range under hard
+      aerodynamic, structural, and stability constraints. Finished 5th place overall.
+    </p>
+    <div class="meta-bar">
+      <div class="item"><span class="label">Role</span><span class="value">Aerodynamics &amp; Stability Analysis, Wing Mount &amp; Assembly</span></div>
+      <div class="item"><span class="label">Timeline</span><span class="value">Spring – Fall 2026</span></div>
+      <div class="item"><span class="label">Team</span><span class="value">The Millennium Falcons (Team #5) — Isaac Sheard, Rakeem McFarlane, Juan Orrego, Luke Pelletier</span></div>
+      <div class="item"><span class="label">Tools</span><span class="value">Vortex Lattice Method (VLM), ScanARS sizing code, foam-board/balsa construction</span></div>
+    </div>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">01</span>
+    <h2>The Problem</h2>
+    <p>UEFC scores each team's aircraft on two things pulling in opposite directions: nominal
+       flight speed, and how far a payload mass can be shifted aft in flight (payload CG range)
+       while staying controllable — all under hard constraints: a maximum lift coefficient, the
+       maximum thrust available from the given motor, a wing bending-moment limit, tail volume
+       coefficient ranges, a minimum spiral stability parameter, elevator deflection limits, and
+       a static margin band. Push too hard for speed and you can't carry or shift payload safely;
+       push too hard for payload range and you lose stability margin. We had to find a
+       competitive point on that tradeoff using real aircraft design tools, then build hardware
+       that actually matched the model.</p>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">02</span>
+    <h2>Approach</h2>
+    <p>We started in UEFC Part 1 with a design sizing study sweeping aspect ratio, wing area,
+       taper ratio, and thickness ratio to maximize speed within the lift, thrust, and structural
+       constraints, converging on a taper ratio of 0.5 and thickness ratio of 0.12. In Part 2, we
+       ran a closed-loop iteration between a vortex lattice method (VLM) aerodynamic solver and
+       the ScanARS sizing code: after each VLM run we checked the predicted lift coefficient and
+       maximum sectional lift coefficient, re-ran ScanARS for updated aspect ratio and wing area,
+       and repeated until the results converged. We ran a wing twist/washout study — 2° of root
+       incidence and −3° of tip incidence — to smooth out a dip in the spanwise lift distribution
+       and reduce the risk of tip stall. We chose tail volume coefficients (Vh = 0.50, Vv = 0.03)
+       to compensate for a shorter-than-baseline tail moment arm, and deliberately picked a
+       nominal static margin of 21.6% — slightly above the recommended range — to buy extra
+       stability headroom in exchange for a larger safe aft-payload CG range, backing off to a 5%
+       margin buffer at the aft-payload extreme.</p>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">03</span>
+    <h2>What I Built</h2>
+    <p>I ran the VLM-to-ScanARS closed-loop analysis that landed on our final wing parameters —
+       aspect ratio 8.687, wing area 0.177 m², span 1.239 m, mean chord 0.143 m — and our
+       performance figures: an 11.09 m/s nominal flight speed and a 0.404 payload fraction.
+       I worked through the mass breakdown and component-location calculations with a teammate,
+       and contributed to the team's final stability and control decisions, including the static
+       margin selection and tail sizing. During the build, I worked with a teammate to construct
+       and install the wing mount, aligned the servo/wing-mount assembly, sanded the wing to fit
+       securely, sized and trimmed the fuselage to match the design geometry, and helped balance
+       the finished aircraft's center of gravity to match our analysis.</p>
+    <div class="media-grid">
+      <figure style="margin:0;">
+        <img src="../assets/projects/uefc-team-photo.jpg" alt="The Millennium Falcons team holding the finished competition plane.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">The Millennium Falcons with the finished plane</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/uefc-fuselage-no-wings.jpg" alt="Aircraft fuselage without wings attached, showing the motor and landing gear.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Fuselage without wings</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/uefc-front-view-assembled.jpg" alt="Front view of the fully assembled aircraft on the ground.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Front view, fully assembled</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/uefc-lift-distribution.png" alt="Plot of spanwise lift coefficient distribution after the washout study.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Spanwise lift distribution after washout tuning</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/uefc-static-margin-trim.png" alt="Plots of elevator trim angle and static margin versus payload CG shift.">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Elevator trim &amp; static margin vs. payload CG shift</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">04</span>
+    <h2>Results &amp; What I Learned</h2>
+    <p>The as-built aircraft matched our Part 2 design intent almost exactly — wing area, aspect
+       ratio, span, tail sizing, and moment arms all came out identical to spec. It flew
+       successfully in both the nominal and aft-payload configurations: stable and predictable at
+       nominal CG, with more sensitive (but still controllable) pitch response at the aft-payload
+       extreme, consistent with the lower static margin we'd designed in. The team placed 5th
+       overall in the competition. The main build challenge was maintaining geometric accuracy
+       while cutting and assembling the foam wing panels — small asymmetries and structural flex
+       slightly affected trim during flight testing, a good reminder that a model is only as good
+       as the hardware built to match it.</p>
+  </section>
+
+  <div class="wrap project-nav">
+    <a href="../projects.html" class="btn secondary">← All Projects</a>
+    <a href="jetjoe-turbojet.html" class="btn secondary">Next: JetJoe Turbojet Lab →</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <span>&copy; 2026 Isaac Sheard — Fairmont, MN &rarr; Cambridge, MA.</span>
+    <div class="footer-links">
+      <a href="mailto:isaac.sheard3@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/isaac-sheard/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/IsaacSheard" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
