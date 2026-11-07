@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HackMIT Stratospheric Balloon — Isaac Sheard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="../index.html">isaac<span>.</span>sheard</a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../about.html">About</a>
+      <a class="resume-link" href="../assets/resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="project-hero wrap">
+    <div class="breadcrumb"><a href="../projects.html">Projects</a> / HackMIT Stratospheric Balloon</div>
+    <span class="tag">HackMIT · 24-Hour Hackathon · Sep 2026</span>
+    <h1>An LLM in the Stratosphere, in 24 Hours</h1>
+    <p class="summary">
+      Designed, built, launched, and recovered a stratospheric balloon payload carrying an NVIDIA
+      Jetson, all within a 24-hour hackathon. MIT students sent LLM prompts up to the payload and
+      got responses back over radio through a custom-built Yagi antenna.
+    </p>
+    <div class="meta-bar">
+      <div class="item"><span class="label">Event</span><span class="value">HackMIT 2026 (24-hour hackathon)</span></div>
+      <div class="item"><span class="label">Timeline</span><span class="value">September 2026</span></div>
+      <div class="item"><span class="label">Team</span><span class="value"></span></div>
+      <div class="item"><span class="label">Tools</span><span class="value">NVIDIA Jetson, custom Yagi antenna, NOAA wind forecasts</span></div>
+    </div>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">01</span>
+    <h2>The Problem</h2>
+    <p>Get a working compute payload to the stratosphere and back in a single day: design it,
+       build it, launch it, run an LLM on it over a radio link, and recover it. Cambridge sits close
+       to the Atlantic, so a long drift downrange could mean losing the payload in the ocean.</p>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">02</span>
+    <h2>Approach</h2>
+    <p>I analyzed NOAA wind forecasts to quantify the risk of drifting over the Atlantic. To
+       shorten the flight, we evaluated doubling the standard 2-lb free lift. A faster ascent
+       means less time in the wind and less downrange drift.</p>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">03</span>
+    <h2>What I Built</h2>
+    <p>We built a stratospheric payload around an NVIDIA Jetson that received LLM prompts sent
+       in by MIT students and transmitted the responses back over radio using a custom-built Yagi
+       antenna.</p>
+  </section>
+
+  <section class="content-block wrap">
+    <span class="num">04</span>
+    <h2>Results</h2>
+    <p>The payload launched and was recovered within a 10-minute drive of MIT.</p>
+  </section>
+
+  <div class="wrap project-nav">
+    <a href="hypersonics-orex.html" class="btn secondary">← Hypersonics Research</a>
+    <a href="ri3d-mit.html" class="btn secondary">Next: RI3D@MIT →</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <span>&copy; 2026 Isaac Sheard — Fairmont, MN &rarr; Cambridge, MA.</span>
+    <div class="footer-links">
+      <a href="mailto:isaac.sheard3@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/isaac-sheard/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/IsaacSheard" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

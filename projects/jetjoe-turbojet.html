@@ -49,9 +49,8 @@
     <p>The goal was to predict a small turbojet's real performance — thrust, mass flow, fuel
        consumption, turbine temperatures — from first principles before ever firing it, then see
        how well an idealized Brayton-cycle model held up against actual measured data across a
-       full range of throttle settings. That comparison is as much about where a textbook cycle
-       model breaks down against real losses (finite compressor/turbine efficiency, heat
-       transfer, non-ideal expansion) as it is about the engine itself.</p>
+       full range of throttle settings, including where it breaks down against real losses
+       (finite compressor/turbine efficiency, heat transfer, non-ideal expansion).</p>
   </section>
 
   <section class="content-block wrap">
@@ -108,14 +107,14 @@
 
   <section class="content-block wrap">
     <span class="num">04</span>
-    <h2>Results &amp; What I Learned</h2>
+    <h2>Results</h2>
     <p>The model landed close on some figures and further off on others once checked against
        real data — our modeled specific thrust (0.741) undershot the measured "direct" value
        (0.914) and was well below the "thermodynamic" estimate (2.06) at max speed, and our
        predicted turbine inlet temperature (716 K) came in well under the thermodynamic estimate
-       (1137 K). That gap is a good illustration of how much real losses matter that an idealized
-       cycle model doesn't fully capture — our initial "for now" compressor efficiency assumption
-       of 70% turned out to be optimistic. Live-fire testing reached about 160,000 rpm with a
+       (1137 K). Most of the gap comes from losses the idealized
+       cycle model leaves out; our initial 70% compressor efficiency assumption was
+       optimistic. Live-fire testing reached about 160,000 rpm with a
        clean coast-down (no rubbing or alignment issues), confirming the assembly was sound.
        Using the measured specific fuel consumption at intermediate speed, we estimated a Breguet
        range of roughly 121 km and an overall propulsive efficiency of about 0.34% for a notional

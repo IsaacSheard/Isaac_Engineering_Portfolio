@@ -26,60 +26,137 @@
 <main>
   <section class="project-hero wrap">
     <div class="breadcrumb"><a href="../projects.html">Projects</a> / MIT Rocket Team</div>
-    <span class="tag">MIT Rocket Team · Sep 2024 – Aug 2026</span>
-    <h1>Solid Propulsion &amp; Composite Motor Case FEA</h1>
+    <span class="tag">MIT Rocket Team · Fall 2025</span>
+    <h1>Carbon Fiber Motor Case FEA</h1>
     <p class="summary">
-      [PLACEHOLDER — replace with 2–3 sentences on the solid propulsion sub-team's goals and
-      your role as a member and Executive IT Chair. Resume-derived starting point: FEA of a
-      filament-wound CFRP motor case in Ansys/ACP, plus hands-on machining and propellant work
-      for low-altitude SRAD test flights.]
+      I built a composite FEA model of the MIT Rocket Team's filament-wound carbon fiber motor case,
+      teaching myself Ansys ACP to do it. The model starts from the winding layup: an orthotropic
+      T800S/epoxy material, &plusmn;54&deg; wound plies, and a shell mesh, run through static
+      structural, composite failure, and modal analyses. The goal was to find how many layers the case
+      needs for a factor of safety of 2. Hand calculations put that at about 8 layers, and the FEA
+      results line up with them.
     </p>
     <div class="meta-bar">
-      <div class="item"><span class="label">Role</span><span class="value">Solid Propulsion Subteam Member &amp; Executive IT Chair</span></div>
-      <div class="item"><span class="label">Timeline</span><span class="value">Sep 2024 — Aug 2026</span></div>
-      <div class="item"><span class="label">Team Size</span><span class="value">[Add sub-team size]</span></div>
-      <div class="item"><span class="label">Tools</span><span class="value">Ansys/ACP, CFRP filament winding, openMotor</span></div>
+      <div class="item"><span class="label">Role</span><span class="value">Motor case FEA</span></div>
+      <div class="item"><span class="label">Timeline</span><span class="value">Fall 2025</span></div>
+      <div class="item"><span class="label">Result</span><span class="value">~8 layers for FOS 2 (hand calcs, FEA agrees)</span></div>
+      <div class="item"><span class="label">Material</span><span class="value">T800S/epoxy, 60% fiber volume</span></div>
+      <div class="item"><span class="label">Tools</span><span class="value">Ansys Workbench 2025 R2: ACP (Pre), Static Structural, Modal, Composite Failure Tool</span></div>
     </div>
   </section>
 
   <section class="content-block wrap">
     <span class="num">01</span>
     <h2>The Problem</h2>
-    <p>[PLACEHOLDER — what needed to be proven about the filament-wound CFRP motor case before
-       it could fly? e.g. did the team need to validate a new case design against internal
-       pressure and end loads before committing to a test flight?]</p>
+    <p>A filament-wound carbon fiber case can be much lighter than a metal one, but its strength
+       depends on the fiber angle and the number of layers, not just the wall thickness. The team
+       needed an answer to one question: <strong>how many layers does the case need to reach a factor
+       of safety of 2 under chamber pressure?</strong> A solid-tube model can't answer that. It takes
+       a model that represents the laminate as it is actually wound.</p>
+  <div style="display:grid;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:start;margin-bottom:8px;">
+      <figure style="margin:0;">
+        <img src="../assets/projects/rocket-fea-workflow.png" alt="Ansys Workbench project schematic linking ACP (Pre) setup into a Static Structural analysis." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">ACP (Pre) setup feeding the Static Structural model</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/rocket-fea-material.png" alt="Ansys Engineering Data table of orthotropic T800S/epoxy properties." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Orthotropic T800S/epoxy definition: stiffness and stress limits</figcaption>
+      </figure>
+  </div>
   </section>
+
 
   <section class="content-block wrap">
     <span class="num">02</span>
     <h2>Approach</h2>
-    <p>[PLACEHOLDER — how did you build the winding/laminate model and define the orthotropic
-       CFRP material properties in Ansys/ACP? What load cases did you simulate (internal
-       pressure, remote displacement end loads) and why those?]</p>
+    <p><strong>Material.</strong> I defined T800S/epoxy at 60% fiber volume as an orthotropic material:
+       163 GPa along the fiber and 9 GPa transverse, plus directional stress limits, strain limits,
+       and Tsai-Wu coupling coefficients. Where the spec sheet didn't give a value, I used a
+       conservative estimate.</p>
+    <p><strong>Layup.</strong> I used symmetric &plusmn;54&deg; plies. That's close to the ~54.7&deg;
+       "netting" angle, where helical fibers balance the 2:1 hoop-to-axial stress in a pressurized
+       cylinder. The stackup sets the ply order through the thickness, and I checked the laminate's
+       effective stiffness in ACP's polar properties plot.</p>
+    <p><strong>Pipeline.</strong> The ACP (Pre) setup feeds the Static Structural model, which maps the
+       plies onto the shell surface rather than a solid. That's the right choice for a thin laminated
+       wall. The shell uses a ~10 mm quad-dominant mesh. Loads are internal pressure with end supports
+       and remote displacements. Failure comes from the Composite Failure Tool, because the standard
+       safety-factor result is unavailable for layered shells. I ran a modal analysis alongside it.</p>
+  <div style="display:grid;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:start;margin-bottom:8px;">
+      <figure style="margin:0;">
+        <img src="../assets/projects/rocket-fea-layup-polar.png" alt="ACP stackup plot of alternating +54 and -54 degree carbon fabric plies with polar stiffness plot." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">&plusmn;54&deg; stackup and polar stiffness (E1, E2, G12)</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/rocket-fea-mesh.png" alt="Shell mesh of the cylindrical motor case in Ansys Mechanical." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">~10 mm quad-dominant shell mesh</figcaption>
+      </figure>
+  </div>
   </section>
+
 
   <section class="content-block wrap">
     <span class="num">03</span>
     <h2>What I Built</h2>
-    <p>Built the winding/laminate FEA model for the filament-wound CFRP motor case in
-       Ansys/ACP, defined the orthotropic composite material properties, and simulated
-       internal-pressure and remote-displacement end loads, correlating predictions against
-       hydrostatic test data. On the hardware side, machined the nozzle carrier and forward
-       closure, mixed and cast custom solid propellant, and designed grain geometry for
-       low-altitude SRAD test flights.
-       [PLACEHOLDER — add more specifics: mesh/material details, hydrostatic test setup,
-       propellant/grain specifics you're comfortable sharing publicly.]</p>
-    <div class="media-grid">
-      <div class="placeholder-box">Photo: hardware / test setup</div>
-      <div class="placeholder-box">Photo: launch / integration</div>
-      <div class="placeholder-box">Diagram: system architecture</div>
-    </div>
+    <p><strong>Getting the fibers right.</strong> My first rosette and oriented selection set produced
+       fiber vectors that weren't tangent to the winding path, and they left gaps in coverage. When I
+       dug in, I found ACP was picking up three rosettes where I'd defined one. I switched to ACP's
+       Winding Wizard, which generates a geodesic winding layup (r&middot;sin&theta; = constant) with
+       automatic thickness correction. That gave continuous coverage that matches how the case is
+       actually wound.</p>
+  <div style="display:grid;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:start;margin-bottom:8px;">
+      <figure style="margin:0;">
+        <img src="../assets/projects/rocket-fea-fiber-early.png" alt="Early fiber direction plot with patchy, misaligned coverage." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Before: misaligned fiber directions with patchy coverage</figcaption>
+      </figure>
+      <figure style="margin:0;">
+        <img src="../assets/projects/rocket-fea-fiber-final.png" alt="Fiber direction plot showing continuous helical coverage along the full case." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">After: continuous wound coverage along the full case</figcaption>
+      </figure>
+  </div>
+    <div style="margin-top:28px;"></div>
+    <p><strong>Plies vs. layers.</strong> Adding layers inside a ply didn't change the stress the way it
+       should have. That showed me that the stackup, not each ply's layer count, controls the
+       through-thickness sequence, so I restructured the layup.</p>
+    <p><strong>Catching bad results.</strong> To test the pipeline, I ran it with a reference 230 GPa
+       prepreg. With 10 layers, the safety factor across the barrel came out around 0.5. The lowest
+       values sat right at the fixed support, which is where boundary conditions tend to produce
+       misleading stress peaks, so I didn't treat that minimum as a real weak spot. When I switched to
+       our T800S spec-sheet values, the safety factor jumped to the 1000 cap and stayed there even at
+       100&times; and 1000&times; the pressure. Since it didn't change with load, something in the
+       model was wrong, so I went back to a known material to prove out the
+       pipeline before bringing ours back in.</p>
+  <figure style="margin:24px 0 0;">
+    <img src="../assets/projects/rocket-fea-safety-factor.png" alt="Composite safety factor contour on the case with 10 layers of reference prepreg, minimum 0.24." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+    <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Debugging run with a reference material, not ours: composite safety factor, 10 layers. The minimum sits at the fixed support.</figcaption>
+  </figure>
+  <figure style="margin:24px 0 0;">
+    <img src="../assets/projects/rocket-fea-sf-flat.png" alt="Safety factor contour stuck at 1000 everywhere on the case." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+    <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Sanity-check failure: safety factor pinned at 1000 even at 1000&times; pressure</figcaption>
+  </figure>
+    <div style="margin-top:28px;"></div>
+    <p><strong>Modal.</strong> The first modes come in matching pairs (50.7, 50.7, 77.8, 77.8 Hz). That's
+       what an axisymmetric tube should do, since it flexes the same way in any two perpendicular
+       planes, and it's a useful sign that the geometry and layup are behaving consistently. The
+       first-mode frequency is in the range a hand calculation predicts for this setup.</p>
+  <figure style="margin:24px 0 0;">
+    <img src="../assets/projects/rocket-fea-modal-mode1.png" alt="Mode 1 shape of the motor case at 50.7 Hz." style="width:100%;border:1px solid var(--border);border-radius:var(--radius);">
+    <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Mode 1 at 50.7 Hz, which repeats at the same frequency as mode 2. The colors show mode shape only; modal amplitudes are normalized.</figcaption>
+  </figure>
   </section>
+
 
   <section class="content-block wrap">
     <span class="num">04</span>
-    <h2>Results &amp; What I Learned</h2>
-    <p>[PLACEHOLDER — outcome of testing/launches, what worked, what you'd change next time.]</p>
+    <h2>Where It Stands</h2>
+    <p>Hand calculations put the case at <strong>about 8 layers</strong> for a factor of safety of 2. The
+       FEA pipeline, which takes a wound layup from ACP through static structural, composite failure,
+       and modal analyses, gives results consistent with that.</p>
+    <p>The carbon fiber case didn't make it into this motor. We couldn't get access to an oven to cure
+       it before our go/no-go deadline, so carbon fiber is planned for a future motor. When it comes
+       back, the model is ready to pick up. The next steps there are bringing our T800S properties back
+       in, running a mesh convergence study, and adding pre-stressed modal (so chamber pressure
+       stiffens the shell) with boundary conditions that match how the case mounts in flight.</p>
   </section>
 
   <div class="wrap project-nav">

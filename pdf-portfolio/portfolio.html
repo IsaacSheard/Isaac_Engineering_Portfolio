@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Isaac Sheard — Engineering Portfolio</title>
+<!--
+  Print-ready PDF portfolio (Letter, landscape). Not linked from the site.
+  Regenerate with:  ./pdf-portfolio/build.sh
+  Images come from ../assets/projects — drop new photos there and add <img> tags.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1714;
+    --dim: #5b5048;
+    --faint: #8f8379;
+    --rule: #ddd5cc;
+    --paper: #ffffff;
+    --tint: #f6f2ed;
+    --accent: #cc2027;
+    --gold: #b07f22;
+    --display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+    --sans: "Inter", -apple-system, "Helvetica Neue", sans-serif;
+    --mono: "JetBrains Mono", Menlo, monospace;
+  }
+  @page { size: 11in 8.5in; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #888; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 9.6pt; line-height: 1.45;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @media print { html, body { background: var(--paper); } }
+
+  .page { width: 11in; height: 8.5in; background: var(--paper); position: relative;
+          overflow: hidden; padding: 0.5in 0.55in 0.6in; margin: 0 auto 0.25in;
+          page-break-after: always; break-after: page; display: flex; flex-direction: column; }
+  .page:last-child { page-break-after: auto; break-after: auto; margin-bottom: 0; }
+  .page::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 0.14in; background: var(--accent); }
+
+  .foot { position: absolute; left: 0.55in; right: 0.55in; bottom: 0.28in; display: flex;
+          justify-content: space-between; font-family: var(--mono); font-size: 7pt;
+          color: var(--faint); letter-spacing: 0.04em; border-top: 1px solid var(--rule); padding-top: 6px; }
+
+  .kicker { font-family: var(--mono); font-size: 7.6pt; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--accent); }
+  h1, h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase;
+           line-height: 0.95; margin: 0; letter-spacing: 0.005em; }
+  h2 { font-size: 30pt; margin: 4px 0 8px; }
+  h3 { font-family: var(--mono); font-size: 7.6pt; font-weight: 600; letter-spacing: 0.1em;
+       text-transform: uppercase; color: var(--dim); margin: 12px 0 3px; }
+  p { margin: 0 0 6px; }
+  .lead { font-size: 10.6pt; color: var(--dim); margin-bottom: 4px; }
+  b, strong { font-weight: 600; }
+
+  .meta { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 2px;
+          font-size: 8.4pt; padding: 7px 0; border-top: 1px solid var(--rule);
+          border-bottom: 1px solid var(--rule); margin: 6px 0 2px; }
+  .meta dt { font-family: var(--mono); font-size: 7pt; text-transform: uppercase;
+             letter-spacing: 0.08em; color: var(--faint); padding-top: 1.5px; }
+  .meta dd { margin: 0; }
+
+  .cols { display: grid; grid-template-columns: 3.55in 1fr; gap: 0.35in; flex: 1; min-height: 0; }
+  .gallery { display: grid; gap: 8px; min-height: 0; }
+  figure { margin: 0; display: flex; flex-direction: column; min-height: 0; }
+  figure img { width: 100%; flex: 1; min-height: 0; object-fit: cover; border: 1px solid var(--rule); display: block; }
+  figure img.contain { object-fit: contain; background: #fff; }
+  figcaption { font-family: var(--mono); font-size: 6.6pt; color: var(--faint); margin-top: 3px;
+               letter-spacing: 0.02em; }
+
+  .stats { display: grid; gap: 8px; }
+  .stat { background: var(--tint); border-left: 3px solid var(--accent); padding: 8px 10px; }
+  .stat .n { font-family: var(--display); font-weight: 800; font-size: 26pt; line-height: 1; }
+  .stat .n small { font-size: 13pt; }
+  .stat .l { font-size: 8pt; color: var(--dim); margin-top: 3px; line-height: 1.3; }
+
+  table.cmp { width: 100%; border-collapse: collapse; font-size: 8.4pt; margin-top: 4px; }
+  table.cmp th, table.cmp td { text-align: right; padding: 3px 6px; border-bottom: 1px solid var(--rule); }
+  table.cmp th:first-child, table.cmp td:first-child { text-align: left; }
+  table.cmp th { font-family: var(--mono); font-size: 6.8pt; font-weight: 600; text-transform: uppercase;
+                 letter-spacing: 0.06em; color: var(--faint); }
+
+  /* cover */
+  .cover { display: grid; grid-template-columns: 1fr 3.3in; gap: 0.45in; flex: 1; min-height: 0; }
+  .cover h1 { font-size: 78pt; line-height: 0.86; }
+  .cover h1 span { color: var(--accent); }
+  .cover .sub { font-family: var(--mono); font-size: 9pt; letter-spacing: 0.06em; text-transform: uppercase;
+                color: var(--dim); margin: 14px 0 16px; }
+  .contact { font-size: 9pt; line-height: 1.7; }
+  .contact span { font-family: var(--mono); font-size: 7pt; text-transform: uppercase; letter-spacing: 0.08em;
+                  color: var(--faint); display: inline-block; width: 0.75in; }
+  .toc { margin-top: 18px; border-top: 2px solid var(--ink); }
+  .toc .row { display: grid; grid-template-columns: 0.35in 1fr auto; gap: 8px; padding: 6px 0;
+              border-bottom: 1px solid var(--rule); align-items: baseline; }
+  .toc .no { font-family: var(--mono); font-size: 8pt; color: var(--accent); font-weight: 600; }
+  .toc .t { font-weight: 600; font-size: 10pt; }
+  .toc .t small { display: block; font-weight: 400; color: var(--dim); font-size: 8.4pt; }
+  .toc .org { font-family: var(--mono); font-size: 7.2pt; color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* more-work page */
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 0.25in; flex: 1; align-content: start; margin-top: 10px; }
+  .card { border-top: 2px solid var(--ink); padding-top: 7px; }
+  .card .when { font-family: var(--mono); font-size: 7pt; color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; }
+  .card h4 { font-family: var(--display); font-size: 16pt; font-weight: 800; text-transform: uppercase;
+             line-height: 1; margin: 3px 0 2px; }
+  .card .org { font-size: 8.2pt; color: var(--accent); font-weight: 600; margin-bottom: 5px; }
+  .card p { font-size: 8.6pt; }
+  .card ul { margin: 0; padding-left: 13px; font-size: 8.6pt; }
+  .card li { margin-bottom: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ============ 1 · COVER ============ -->
+<section class="page">
+  <div class="cover">
+    <div style="display:flex;flex-direction:column;">
+      <span class="kicker">Engineering Portfolio · 2026</span>
+      <h1 style="margin-top:10px;">Isaac<br><span>Sheard</span></h1>
+      <div class="sub">B.S. Aerospace Engineering · MIT · May 2028</div>
+      <p class="lead" style="max-width:5.4in;">
+        I build hardware that has to work in the real world: autonomous rovers, rocket motor cases,
+        competition aircraft, and stratospheric payloads. I own the work end to end, from first-principles
+        analysis and CAD to machining, wiring, software, and field testing.
+      </p>
+      <div class="contact" style="margin-top:10px;">
+        <div><span>Email</span>imsheard@mit.edu</div>
+        <div><span>Web</span>isaacsheard.github.io/Isaac_Engineering_Portfolio</div>
+        <div><span>LinkedIn</span>linkedin.com/in/isaac-sheard</div>
+      </div>
+      <div class="toc">
+        <div class="row"><span class="no">02</span><span class="t">Autonomous Rovers, Built From Scratch<small>Two rovers, full-stack integration, sim-to-real autonomy</small></span><span class="org">Skyrun AI</span></div>
+        <div class="row"><span class="no">03</span><span class="t">Carbon Fiber Motor Case FEA<small>Self-taught Ansys ACP model of a &plusmn;54&deg; wound case: ~8 layers for FOS 2</small></span><span class="org">MIT Rocket Team</span></div>
+        <div class="row"><span class="no">04</span><span class="t">Design, Build, Fly: 5th Place<small>RC aircraft sized with VLM + ScanARS, flown at two CG configurations</small></span><span class="org">MIT Unified</span></div>
+        <div class="row"><span class="no">05</span><span class="t">JetJoe Turbojet: Model vs. Test<small>Brayton-cycle model, then a live-fire to 160,000 rpm</small></span><span class="org">MIT Unified</span></div>
+        <div class="row"><span class="no">06</span><span class="t">Star Trek Adventure: 2nd Place<small>Solo autonomous rover, scoring model drove the design</small></span><span class="org">MIT 16.632B</span></div>
+        <div class="row"><span class="no">07</span><span class="t">More Work<small>Hypersonics CFD · HackMIT balloon · RI3D · AGCO · NASA Ames · FRC</small></span><span class="org">Various</span></div>
+      </div>
+    </div>
+    <figure>
+      <img src="../assets/site/about-photo.jpg" alt="Isaac Sheard" style="object-position: 50% 30%;">
+    </figure>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>01</span></div>
+</section>
+
+<!-- ============ 2 · SKYRUN ============ -->
+<section class="page">
+  <div class="cols" style="grid-template-columns: 4.3in 1fr;">
+    <div>
+      <span class="kicker">Skyrun AI · San Francisco · May 2026 – Present</span>
+      <h2>Autonomous Rovers,<br>Built From Scratch</h2>
+      <p class="lead">Robotics Engineering Intern (Summer 2026), now a Contract Engineer. I designed and
+        built two autonomous rovers and own their mechanical, electrical, compute, sensor, and
+        autonomy integration.</p>
+      <dl class="meta">
+        <dt>Role</dt><dd>Robotics Engineering Intern → Contract Engineer</dd>
+        <dt>Scope</dt><dd>Mechanical · electrical · compute · sensors · autonomy</dd>
+        <dt>Hardware</dt><dd>NVIDIA Jetson/AGX, LiDAR, IMUs, GPS</dd>
+      </dl>
+      <h3>What I built</h3>
+      <p>Two mechanically different rovers, integrated end to end. On the second platform I went from
+        chassis delivery to the first autonomous SLAM map in 9 days.</p>
+      <p>I built the sim-to-real infrastructure that deploys one autonomy stack across both rovers and
+        simulation, so behaviors developed once run on every platform without rewriting the
+        underlying autonomy logic.</p>
+      <h3>Beyond the hardware</h3>
+      <p>I was entrusted with technical hiring and onboarding. I interview master's-level engineering
+        candidates, train new hires on the rover/autonomy stack, and own the team's core robotics tooling.</p>
+    </div>
+    <div class="stats" style="grid-template-columns: 1fr 1fr; align-content: start;">
+      <div class="stat"><div class="n">2</div><div class="l">autonomous rovers designed and built from scratch</div></div>
+      <div class="stat"><div class="n">9 <small>days</small></div><div class="l">chassis delivery → first autonomous SLAM map (rover 2)</div></div>
+      <div class="stat"><div class="n">6 <small>weeks</small></div><div class="l">to field-proven autonomous navigation</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">autonomous behaviors that transfer across both rovers and sim, unchanged</div></div>
+      <!-- When rover photos are available, swap this diagram for:
+      <figure style="grid-column: 1 / -1;"><img src="../assets/projects/skyrun-rover.jpg" alt=""><figcaption>…</figcaption></figure>
+      -->
+      <figure style="grid-column: 1 / -1; margin-top: 6px;">
+        <svg viewBox="0 0 560 300" style="width:100%;height:auto;border:1px solid var(--rule);background:#fff;" font-family="Inter, sans-serif">
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5b5048"/></marker></defs>
+          <text x="20" y="30" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1.2" fill="#8f8379">SIM-TO-REAL DEPLOYMENT</text>
+          <rect x="130" y="48" width="300" height="62" fill="#1a1714"/>
+          <text x="280" y="75" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Shared autonomy logic</text>
+          <text x="280" y="96" text-anchor="middle" font-size="11" fill="#d8cfc6">6 behaviors · written once</text>
+          <path d="M200,110 L95,170" stroke="#5b5048" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+          <path d="M280,110 L280,170" stroke="#5b5048" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+          <path d="M360,110 L465,170" stroke="#5b5048" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+          <g font-size="13" font-weight="700" text-anchor="middle" fill="#1a1714">
+            <rect x="20" y="174" width="150" height="56" fill="#f6f2ed" stroke="#cc2027" stroke-width="1.5"/>
+            <text x="95" y="200">Rover 1</text>
+            <rect x="205" y="174" width="150" height="56" fill="#f6f2ed" stroke="#cc2027" stroke-width="1.5"/>
+            <text x="280" y="200">Rover 2</text>
+            <rect x="390" y="174" width="150" height="56" fill="#f6f2ed" stroke="#cc2027" stroke-width="1.5"/>
+            <text x="465" y="200">Simulation</text>
+          </g>
+          <g font-size="10" text-anchor="middle" fill="#5b5048">
+            <text x="95" y="217">own chassis &amp; sensors</text>
+            <text x="280" y="217">different mechanical design</text>
+            <text x="465" y="217">develop &amp; test first</text>
+          </g>
+          <text x="280" y="270" text-anchor="middle" font-size="11" fill="#5b5048">Same behaviors run on every target without rewriting the autonomy logic</text>
+        </svg>
+        <figcaption>Sim-to-real infrastructure: one autonomy stack deployed to two mechanically different rovers and simulation</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>02</span></div>
+</section>
+
+<!-- ============ ROCKET TEAM FEA ============ -->
+<section class="page">
+  <div class="cols">
+    <div>
+      <span class="kicker">MIT Rocket Team · Fall 2025</span>
+      <h2>Carbon Fiber<br>Motor Case FEA</h2>
+      <p class="lead">Taught myself Ansys ACP to size the team's filament-wound CFRP case for a factor of
+        safety of 2.</p>
+      <dl class="meta">
+        <dt>Result</dt><dd><b>~8 layers</b> for FOS 2 (hand calcs; FEA consistent)</dd>
+        <dt>Material</dt><dd>T800S/epoxy, 60% Vf, orthotropic</dd>
+        <dt>Tools</dt><dd>Ansys ACP (Pre), Static Structural, Modal, Composite Failure Tool</dd>
+      </dl>
+      <h3>Model</h3>
+      <p>Symmetric <b>&plusmn;54&deg;</b> plies (near the 54.7&deg; netting angle) on a ~10 mm shell mesh,
+        under internal pressure.</p>
+      <h3>Iterations</h3>
+      <p>Fibers weren't following the winding path because ACP saw 3 rosettes where I'd defined 1.
+        The <b>Winding Wizard</b> (geodesic layup) fixed coverage.</p>
+      <h3>Catching bad results</h3>
+      <p>Our spec-sheet material pinned SF at 1000 even at <b>1000&times; pressure</b>. Since it didn't change with
+        load, the model was wrong, so I proved the pipeline on a known material first.</p>
+      <h3>Outcome</h3>
+      <p>We couldn't get oven access to cure the case before go/no-go, so carbon fiber moves to a future
+        motor. The model is ready when it does.</p>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 0.8fr 0.8fr;">
+      <figure><img class="contain" src="../assets/projects/rocket-fea-layup-polar.png" alt=""><figcaption>&plusmn;54&deg; stackup &amp; polar stiffness</figcaption></figure>
+      <figure><img src="../assets/projects/rocket-fea-fiber-final.png" alt=""><figcaption>Winding Wizard: continuous fiber coverage</figcaption></figure>
+      <figure style="grid-column: 1 / span 2;"><img src="../assets/projects/rocket-fea-safety-factor.png" alt="" style="object-position: 0 60%;"><figcaption>Debugging run, reference material: composite safety factor (min at fixed support)</figcaption></figure>
+      <figure style="grid-column: 1 / span 2;"><img src="../assets/projects/rocket-fea-modal-mode1.png" alt=""><figcaption>Mode 1, 50.7 Hz: modes come in matching pairs, as an axisymmetric tube should</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>03</span></div>
+</section>
+
+<!-- ============ 3 · UEFC ============ -->
+<section class="page">
+  <div class="cols">
+    <div>
+      <span class="kicker">MIT Unified Engineering · Spring – Fall 2026</span>
+      <h2>Design, Build, Fly:<br>5th Place</h2>
+      <p class="lead">Sized, analyzed, built, and flew a competition RC aircraft with a four-person team,
+        trading flight speed against how far payload CG could shift aft while staying controllable.</p>
+      <dl class="meta">
+        <dt>Role</dt><dd>Aerodynamics &amp; stability analysis; wing mount &amp; assembly</dd>
+        <dt>Team</dt><dd>4 · "The Millennium Falcons"</dd>
+        <dt>Tools</dt><dd>Vortex Lattice Method, ScanARS sizing code</dd>
+      </dl>
+      <h3>Approach</h3>
+      <p>I ran a closed-loop iteration between a VLM aero solver and ScanARS until the wing converged:
+        <b>AR 8.69, S = 0.177 m², b = 1.24 m</b>. A washout study (+2° root, −3° tip) smoothed the spanwise
+        lift dip to reduce tip-stall risk. We picked a <b>21.6% static margin</b>, just above the
+        recommended band, to buy a larger safe aft-payload CG range.</p>
+      <h3>Build</h3>
+      <p>Built and installed the wing mount, aligned the servo/mount assembly, trimmed the fuselage to
+        design geometry, and balanced CG to match the analysis.</p>
+      <h3>Result</h3>
+      <p>As-built geometry matched spec. It flew at <b>11.09 m/s</b> with a <b>0.404 payload fraction</b>
+        in both nominal and aft-CG configurations, placing <b>5th overall</b>.</p>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1.25fr 1fr; grid-template-rows: 1.45fr 1fr;">
+      <figure><img src="../assets/projects/uefc-team-photo.jpg" alt=""><figcaption>The Millennium Falcons with the finished aircraft</figcaption></figure>
+      <figure><img class="contain" src="../assets/projects/uefc-lift-distribution.png" alt=""><figcaption>Spanwise lift distribution after washout tuning</figcaption></figure>
+      <figure style="grid-column: 1 / span 2;"><img class="contain" src="../assets/projects/uefc-static-margin-trim.png" alt=""><figcaption>Elevator trim &amp; static margin vs. payload CG shift</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>04</span></div>
+</section>
+
+<!-- ============ 4 · JETJOE ============ -->
+<section class="page">
+  <div class="cols">
+    <div>
+      <span class="kicker">MIT Unified Engineering · Spring – Fall 2026</span>
+      <h2>JetJoe Turbojet:<br>Model vs. Test</h2>
+      <p class="lead">Predicted a JJ-1400 turbojet's thrust, mass flow, and turbine temperature from first
+        principles, then built and live-fired the engine to see where the model held up.</p>
+      <dl class="meta">
+        <dt>Role</dt><dd>Cycle modeling, thrust/efficiency analysis, assembly &amp; test</dd>
+        <dt>Team</dt><dd>4 · "The Millennium Falcons"</dd>
+        <dt>Methods</dt><dd>Brayton cycle, control-volume momentum, thrust stand</dd>
+      </dl>
+      <h3>What I did</h3>
+      <p>Derived the engine thrust equation from a control-volume momentum analysis, worked the
+        specific-thrust and SFC derivations, and solved for turbine inlet temperature from a
+        compressor–turbine shaft-work balance. Measured blade angles and throat area directly off the
+        hardware, and ran the coast-down test that verified shaft alignment before live fire.</p>
+      <h3>Result</h3>
+      <p>Clean live fire to <b>~160,000 rpm</b>. The idealized model under-predicted real performance, and
+        the gap traced back to an optimistic 70% compressor-efficiency assumption.</p>
+      <table class="cmp">
+        <tr><th>At max speed</th><th>Model</th><th>Direct</th><th>Thermo</th></tr>
+        <tr><td>Specific thrust</td><td>0.741</td><td>0.914</td><td>2.06</td></tr>
+        <tr><td>Turbine inlet temp.</td><td>716 K</td><td>—</td><td>1137 K</td></tr>
+      </table>
+      <p style="margin-top:6px;font-size:8.6pt;color:var(--dim);">From measured SFC: ~121 km Breguet range for a notional small aircraft.</p>
+    </div>
+    <div class="gallery" style="grid-template-columns: 0.8fr 1fr; grid-template-rows: 1fr 1fr;">
+      <figure style="grid-row: 1 / span 2;"><img src="../assets/projects/jetjoe-engine-assembled.jpg" alt=""><figcaption>Assembled JJ-1400, ready for testing</figcaption></figure>
+      <figure><img src="../assets/projects/jetjoe-run-sheet.jpg" alt=""><figcaption>Live-fire run sheet, up to 160,000 rpm</figcaption></figure>
+      <figure><img class="contain" src="../assets/projects/jetjoe-thrust-vs-altitude.png" alt=""><figcaption>Static thrust vs. altitude</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>05</span></div>
+</section>
+
+<!-- ============ 5 · STAR TREK ============ -->
+<section class="page">
+  <div class="cols">
+    <div>
+      <span class="kicker">MIT 16.632B · Spring 2026</span>
+      <h2>Star Trek Adventure:<br>2nd Place</h2>
+      <p class="lead">Solo-designed, built, and programmed a rover for a head-to-head, 3-minute gameboard
+        competition where autonomous manipulation scores double.</p>
+      <dl class="meta">
+        <dt>Role</dt><dd>Individual: strategy, mechanism, chassis, autonomy</dd>
+        <dt>Tools</dt><dd>Onshape, line sensor, IMU, wheel encoders</dd>
+        <dt>Result</dt><dd>2nd overall, $125 prize</dd>
+      </dl>
+      <h3>Strategy from numbers</h3>
+      <p>Before building, I modeled every challenge's manual, autonomous-nav, and fully autonomous point
+        value. Shuttle (<b>1,880 pts</b>) and Tricorder (<b>1,820 pts</b>) dominated, so I built a
+        "Shuttle-First" route and set time budgets of 15 s and 20 s from tile-per-second math.</p>
+      <h3>Hardware</h3>
+      <p>Designed one motor mechanism to drive both the shuttle crank and tricorder dial at a fixed height.
+        Redesigned the chassis to four-wheel drive with rear-mounted electronics for more predictable
+        autonomous turns.</p>
+      <h3>Testing</h3>
+      <p>Bench testing showed the crank took ~4 min 50 s against a 15 s budget: geometrically right,
+        badly underpowered.</p>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1fr 1fr; grid-template-rows: 1.25fr 1fr;">
+      <figure><img src="../assets/projects/startrek-isaac-portrait.jpg" alt=""><figcaption>Finished rover and the gameboard</figcaption></figure>
+      <figure><img src="../assets/projects/startrek-fixing-robot.jpg" alt="" style="object-position: 50% 60%;"><figcaption>Assembling and wiring the manipulator</figcaption></figure>
+      <figure><img class="contain" src="../assets/projects/startrek-mechanism-dimensioning.png" alt=""><figcaption>Combined shuttle/tricorder mechanism, CAD dimensioning</figcaption></figure>
+      <figure><img class="contain" src="../assets/projects/startrek-chassis-cad.png" alt=""><figcaption>4WD chassis redesign, electronics moved to rear panel</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>06</span></div>
+</section>
+
+<!-- ============ 6 · MORE WORK ============ -->
+<section class="page">
+  <span class="kicker">Also</span>
+  <h2>More Work</h2>
+  <div class="grid3">
+    <div class="card">
+      <div class="when">Sep 2026 – Present</div>
+      <h4>Hypersonic Reentry Plasma</h4>
+      <div class="org">MIT Hypersonics Research Lab</div>
+      <ul>
+        <li>Modeling electron density and radio blackout around the OREX spacecraft with US3D CFD</li>
+        <li>Reconstructed OREX geometry from NASA/JAXA drawings and verified it against published data</li>
+        <li>Building a structured axisymmetric grid in Pointwise</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="when">Sep 2026 · 24 hours</div>
+      <h4>Stratospheric LLM Balloon</h4>
+      <div class="org">HackMIT</div>
+      <ul>
+        <li>Designed, launched, and recovered a Jetson payload in 24 h, relaying LLM prompts over a custom Yagi antenna</li>
+        <li>Used NOAA wind forecasts to flag Atlantic drift risk; evaluated doubling the 2-lb free lift to cut drift</li>
+        <li>Recovered within a 10-minute drive of MIT</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="when">Oct 2025 – Present</div>
+      <h4>RI3D@MIT</h4>
+      <div class="org">FIRSTxMIT · Head Captain</div>
+      <ul>
+        <li>Head Captain of MIT's first Ri3D; led the captains and ~25 students through CAD, design reviews, and software</li>
+        <li>Fully functional robot within 72 hours of kickoff</li>
+        <li>Fronted ~$4,500 for time-critical parts and secured donated materials</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="when">Summers 2024 &amp; 2025</div>
+      <h4>Embedded Software</h4>
+      <div class="org">AGCO · RoGator sprayer platform</div>
+      <ul>
+        <li>Led UI and CAN signal routing for an integrated weather station system</li>
+        <li>Up to 200× faster runtimes across four optimization projects</li>
+        <li>Built calibration software for the RoGator sprayer</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="when">Jan 2025 – Jan 2026</div>
+      <h4>Zero Robotics</h4>
+      <div class="org">MIT Media Lab · with NASA Ames</div>
+      <ul>
+        <li>Tested Astrobee and refined ISS deployment plans</li>
+        <li>Stabilized the competition IDE: unit tests and 24 bug fixes</li>
+        <li>Instructor and MC for the 2025 finals</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="when">Jun – Aug 2023</div>
+      <h4>Eclipse Sun-Tracking Payload</h4>
+      <div class="org">NASA Space Grant · Univ. of Minnesota</div>
+      <ul>
+        <li>Built a high-altitude balloon payload that tracks the sun through a full 360°</li>
+        <li>Programmed microcontrollers and integrated inertial, GPS, and atmospheric sensors</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="when">Oct 2020 – Aug 2024</div>
+      <h4>FRC Team 2847</h4>
+      <div class="org">Captain · Programming Lead · Driver</div>
+      <ul>
+        <li>Won the Minnesota state championship and qualified for Worlds</li>
+        <li>Raised $149,000, more than the program's previous two decades combined</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="when">Toolbox</div>
+      <h4>Skills</h4>
+      <div class="org">Software · Simulation · Hardware</div>
+      <p><b>Code:</b> Python, C++, C, Java, Arduino, Qt, GCODE<br>
+         <b>CAD/Sim:</b> SolidWorks, Onshape, Ansys (FEA/ACP), Pointwise, US3D, Tecplot, OpenRocket, openMotor<br>
+         <b>Hardware:</b> Jetson/AGX, LiDAR, IMUs, GPS, CNC machining, 3D printing, CANalyzer</p>
+    </div>
+  </div>
+  <p style="font-family:var(--mono);font-size:7.6pt;color:var(--dim);margin-top:auto;padding-bottom:4px;">
+    Full write-ups and more photos → isaacsheard.github.io/Isaac_Engineering_Portfolio
+  </p>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>07</span></div>
+</section>
+
+</body>
+</html>
