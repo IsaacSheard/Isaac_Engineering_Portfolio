@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HackMIT Stratospheric Balloon — Isaac Sheard</title>
+<title>Agents in Space — Isaac Sheard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,50 +25,179 @@
 
 <main>
   <section class="project-hero wrap">
-    <div class="breadcrumb"><a href="../projects.html">Projects</a> / HackMIT Stratospheric Balloon</div>
+    <div class="breadcrumb"><a href="../projects.html">Projects</a> / Agents in Space</div>
     <span class="tag">HackMIT · 24-Hour Hackathon · Sep 2026</span>
-    <h1>An LLM in the Stratosphere, in 24 Hours</h1>
+    <h1>An LLM in Space, in 24 Hours</h1>
     <p class="summary">
-      Designed, built, launched, and recovered a stratospheric balloon payload carrying an NVIDIA
-      Jetson, all within a 24-hour hackathon. MIT students sent LLM prompts up to the payload and
-      got responses back over radio through a custom-built Yagi antenna.
+      <em>Agents in Space</em>: we designed, built, launched, and recovered a high-altitude balloon
+      payload carrying an NVIDIA Jetson, all within a 24-hour hackathon, to run an AI agent at the true
+      edge. Hackers and MIT students submitted 400+ prompts for the agent to run at altitude, with a
+      radio link back to the ground through Yagi antennas we built from scrap.
     </p>
     <div class="meta-bar">
-      <div class="item"><span class="label">Event</span><span class="value">HackMIT 2026 (24-hour hackathon)</span></div>
+      <div class="item"><span class="label">Role</span><span class="value">Aerospace engineer: flight system, payload structure, launch &amp; recovery</span></div>
+      <div class="item"><span class="label">Event</span><span class="value">HackMIT 2026 (24-hour hackathon), team of 4</span></div>
       <div class="item"><span class="label">Timeline</span><span class="value">September 2026</span></div>
-      <div class="item"><span class="label">Team</span><span class="value"></span></div>
-      <div class="item"><span class="label">Tools</span><span class="value">NVIDIA Jetson, custom Yagi antenna, NOAA wind forecasts</span></div>
+      <div class="item"><span class="label">Compute</span><span class="value">Jetson Orin Nano, ESP32, Raspberry Pi failsafe</span></div>
+      <div class="item"><span class="label">Tools</span><span class="value">DIY Yagi antennas, laser cutter, NOAA wind forecasts</span></div>
     </div>
   </section>
+
+  <figure class="wrap" style="margin:0 auto 8px;padding:0;">
+    <video controls playsinline preload="metadata" poster="../assets/projects/hackmit-film-poster.jpg" style="width:100%;display:block;aspect-ratio:16/9;background:#000;border:1px solid var(--border);border-radius:var(--radius);">
+      <source src="../assets/projects/hackmit-film.mp4" type="video/mp4">
+    </video>
+    <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Agents in Space: the 3-minute project film</figcaption>
+  </figure>
 
   <section class="content-block wrap">
     <span class="num">01</span>
     <h2>The Problem</h2>
-    <p>Get a working compute payload to the stratosphere and back in a single day: design it,
-       build it, launch it, run an LLM on it over a radio link, and recover it. Cambridge sits close
-       to the Atlantic, so a long drift downrange could mean losing the payload in the ocean.</p>
+    <p>At altitude, bandwidth is scarce: you can't stream high-resolution video down to run analysis
+       on the ground, and you can't wait until landing for the data. Running inference on board and
+       sending back only the results is the point of edge compute. We wanted to test that by putting an
+       AI agent on a balloon.</p>
+    <p>The constraint was time: get a working compute payload to the edge of space and back in a single
+       day, from design through launch and recovery. Cambridge sits close to the Atlantic, so a long
+       drift downrange could mean losing the payload in the ocean.</p>
   </section>
 
   <section class="content-block wrap">
     <span class="num">02</span>
-    <h2>Approach</h2>
-    <p>I analyzed NOAA wind forecasts to quantify the risk of drifting over the Atlantic. To
-       shorten the flight, we evaluated doubling the standard 2-lb free lift. A faster ascent
-       means less time in the wind and less downrange drift.</p>
+    <h2>Design</h2>
+    <p>I was the team's aerospace engineer, in charge of everything that got the payload into the air
+       and back: the balloon and lift, the flight train, the payload structure, inflation, launch, and
+       recovery. In the team's words, I was the "resident balloon expert" who architected the launch.
+       Teammates handled the radio, electrical, and software.</p>
+    <p>The original plan was two balloons with a radio link between them for cooperative tasks. As the
+       hardware fell behind schedule we cut it to one, which was the right call in 24 hours.</p>
+    <p>The flight was built around a 1000 g balloon carrying about 3.6 lb of components before
+       structure. The payload paired a Jetson Orin Nano running the LLM with an ESP32
+       handling flight sensors (GPS, altimeter, IMU), a Raspberry Pi for video and as a failsafe,
+       separate radio links for commands and data, a video transmitter, and AirTags as backup
+       tracking.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin:24px 0 24px;">
+      <figure style="margin:0;flex:1.333 1 0;min-width:260px;">
+        <img src="../assets/projects/hackmit-whiteboard.jpg" alt="Whiteboard with the payload mass budget, balloon diagram, power and radio block diagram, and to-do list." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Mass budget, flight train, and block diagram</figcaption>
+      </figure>
+      <figure style="margin:0;flex:1.527 1 0;min-width:260px;">
+        <img src="../assets/projects/hackmit-architecture.jpg" alt="Hand-drawn hardware architecture diagram: flight stack, power distribution, and radio links to the ground station." style="width:100%;display:block;background:#fff;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Hardware architecture: flight stack, power distribution, and radio links</figcaption>
+      </figure>
+    </div>
+    <p>I put together the flight-hardware list: the 1000 g balloon; helium with a CGA-580 regulator,
+       hose, and inflation nozzle; the parachute; nylon/Dyneema line and swivels; pink XPS foam board
+       for the payload boxes; a GPS tracker and recovery beacon; the battery and power cabling for the
+       Jetson; and a scale to weigh the payload and set the free lift.</p>
+    <p>I also ran the lift calculations. NOAA wind forecasts showed a real risk of drifting over the
+       Atlantic, and in a 24-hour hackathon we didn't have time to drive far enough from the coast to
+       give ourselves a comfortable margin. So instead of the standard 2 lb of free lift, I sized for
+       roughly double: a faster ascent spends less time in the wind and lands closer to home.</p>
   </section>
 
   <section class="content-block wrap">
     <span class="num">03</span>
-    <h2>What I Built</h2>
-    <p>We built a stratospheric payload around an NVIDIA Jetson that received LLM prompts sent
-       in by MIT students and transmitted the responses back over radio using a custom-built Yagi
-       antenna.</p>
+    <h2>What We Built</h2>
+    <p><strong>Flight hardware.</strong> I designed and built the flight side: both insulated XPS foam
+       payload boxes, all of the rigging (including a ring I laser-cut to spread the lines), the system
+       for sealing the balloon, and tying the whole flight train together from balloon to parachute to
+       payload.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin:24px 0 32px;">
+      <figure style="margin:0;flex:0.75 1 0;min-width:160px;">
+        <img src="../assets/projects/hackmit-build-floor.jpg" alt="Build floor with the foam payload boxes, parachute, laser-cut ring, and Jetson Orin Nano box." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Mid-build: payload boxes, parachute, Jetson</figcaption>
+      </figure>
+      <figure style="margin:0;flex:0.75 1 0;min-width:160px;">
+        <img src="../assets/projects/hackmit-laser-ring.jpg" alt="Isaac at the laser cutter while it cuts the wooden rigging ring." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Laser-cutting the rigging ring</figcaption>
+      </figure>
+      <figure style="margin:0;flex:0.75 1 0;min-width:160px;">
+        <img src="../assets/projects/hackmit-payload-open.jpg" alt="An open payload box on the launch tarp, showing the wiring and electronics inside." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Payload electronics before sealing</figcaption>
+      </figure>
+      <figure style="margin:0;flex:0.75 1 0;min-width:160px;">
+        <img src="../assets/projects/hackmit-rigging.jpg" alt="Isaac and a teammate rigging the payload boxes and ring." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Rigging the payload train</figcaption>
+      </figure>
+    </div>
+    <p><strong>Ground segment.</strong> The long-range antennas we ordered got delayed past launch, so
+       a teammate built two Yagi-Uda antennas from PVC and cut-up tape measures at the MIT Radio Society
+       makerspace. They fed a ground station packed into a hard case. We also
+       built a mission control dashboard that reported the flight back in real time: a live map with
+       the predicted path (from a Tawhiri forecast for a 2 kg payload, 5 m/s ascent, and 24 km burst),
+       a telemetry panel with surface pressure, humidity, wind, estimated altitude and vertical rate,
+       plus the Jetson's CPU load and storage, and an "Agent insights" panel where an LLM interprets the
+       flight against public weather data.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin:24px 0 0px;">
+      <figure style="margin:0;flex:0.75 1 0;min-width:160px;">
+        <img src="../assets/projects/hackmit-yagi-groundstation.jpg" alt="Two wooden Yagi antennas on tripods with the ground station electronics in a hard case." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">DIY Yagi antennas (PVC and tape measure) and ground station</figcaption>
+      </figure>
+      <figure style="margin:0;flex:1.778 1 0;min-width:280px;">
+        <img src="../assets/projects/hackmit-mission-control.png" alt="Palloon Systems mission control dashboard showing the flight map, balloon telemetry panel, and Agent insights panel." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Mission control: predicted path, telemetry, and Agent insights</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="content-block wrap">
     <span class="num">04</span>
     <h2>Results</h2>
-    <p>The payload launched and was recovered within a 10-minute drive of MIT.</p>
+    <p>We drove about three hours out and launched from Montague, MA, on the morning of September 20,
+       2026. Strong eastward winds carried it across the state toward the coast, which is the drift risk
+       the free-lift analysis was meant to limit, and it came down in Everett, just outside Boston.</p>
+    <p>The agent ran at altitude: prompts went up, the payload ran them on board, and the LLM's
+       responses came back down over radio along with GPS and telemetry. We also built a mapping tool to
+       reconstruct the full flight path against NOAA GFS winds:</p>
+    <figure style="margin:24px 0 0;">
+      <img src="../assets/projects/hackmit-flight-summary.jpg" alt="Flight summary: map of the path from Montague to Everett, altitude over time, and the NOAA GFS wind profile." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+      <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Flight reconstruction from our mapping tool: path, modeled altitude profile, and the winds that carried it east</figcaption>
+    </figure>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin:32px 0 16px;">
+      <figure style="margin:0;flex:1.333 1 0;min-width:220px;">
+        <img src="../assets/projects/hackmit-launch-team.jpg" alt="The team on launch day with the balloon inflating, a Yagi antenna on a tripod, and the ground station case." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Launch day: balloon filling, Yagi and ground station ready</figcaption>
+      </figure>
+      <figure style="margin:0;flex:0.75 1 0;min-width:160px;">
+        <img src="../assets/projects/hackmit-filling.jpg" alt="The team filling the balloon with helium on the launch field." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Filling the balloon</figcaption>
+      </figure>
+      <figure style="margin:0;flex:0.5625 1 0;min-width:140px;">
+        <video controls playsinline preload="metadata" poster="../assets/projects/hackmit-launch-poster.jpg" style="width:100%;display:block;aspect-ratio:9/16;background:#000;border:1px solid var(--border);border-radius:var(--radius);">
+          <source src="../assets/projects/hackmit-launch.mp4" type="video/mp4">
+        </video>
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">The launch (video)</figcaption>
+      </figure>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin:0px 0 32px;">
+      <figure style="margin:0;flex:1.778 1 0;min-width:240px;">
+        <video controls playsinline preload="metadata" poster="../assets/projects/hackmit-filling-poster.jpg" style="width:100%;display:block;aspect-ratio:16/9;background:#000;border:1px solid var(--border);border-radius:var(--radius);">
+          <source src="../assets/projects/hackmit-filling.mp4" type="video/mp4">
+        </video>
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Filling the balloon (video)</figcaption>
+      </figure>
+      <figure style="margin:0;flex:1.0 1 0;min-width:160px;">
+        <img src="../assets/projects/hackmit-ascent.jpg" alt="The balloon and payload climbing away into an overcast sky." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Climbing away</figcaption>
+      </figure>
+    </div>
+    <p>We tracked it down and recovered the payload within a 10-minute drive of MIT, with the
+       parachute, ring, and both boxes intact.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin:16px 0 0px;">
+      <figure style="margin:0;flex:1.333 1 0;min-width:220px;">
+        <img src="../assets/projects/hackmit-recovery.jpg" alt="The recovered payload on the ground: parachute, rigging ring, and both payload boxes." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Recovery: parachute, ring, and both payload boxes</figcaption>
+      </figure>
+      <figure style="margin:0;flex:1.778 1 0;min-width:240px;">
+        <video controls playsinline preload="metadata" poster="../assets/projects/hackmit-recovery-poster.jpg" style="width:100%;display:block;aspect-ratio:16/9;background:#000;border:1px solid var(--border);border-radius:var(--radius);">
+          <source src="../assets/projects/hackmit-recovery.mp4" type="video/mp4">
+        </video>
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Finding the payload (video)</figcaption>
+      </figure>
+    </div>
+    <p style="margin-top:32px;"><strong>Next.</strong> We still have the second balloon from the original
+       two-balloon plan. We plan to engineer it properly and launch it again.</p>
   </section>
 
   <div class="wrap project-nav">
