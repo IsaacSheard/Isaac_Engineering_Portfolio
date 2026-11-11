@@ -52,9 +52,35 @@
   <section class="content-block wrap">
     <span class="num">02</span>
     <h2>What I Built</h2>
-    <p>I reconstructed the OREX vehicle geometry from NASA/JAXA technical drawings and verified
-       the dimensions against published data. I'm now building a structured axisymmetric CFD grid
-       in Pointwise for the US3D simulations.</p>
+    <p><strong>Geometry.</strong> OREX is a 50&deg; sphere-cone: a 1350 mm nose radius, a 3400 mm
+       diameter, and a 100 mm shoulder radius. I reconstructed the vehicle profile from JAXA's published
+       layout drawing and NASA's dimensioned geometry, and verified the dimensions against published
+       data.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin:24px 0 32px;">
+      <figure style="margin:0;flex:1.605 1 0;min-width:260px;">
+        <img src="../assets/projects/orex-jaxa-layout.png" alt="JAXA layout drawing of the OREX vehicle: front view of the TPS tiles and side cross-section with 1350 mm nose radius and 3400 mm diameter." style="width:100%;display:block;background:#fff;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">JAXA's OREX layout: TPS tiles and cross-section (source: JAXA)</figcaption>
+      </figure>
+      <figure style="margin:0;flex:1.312 1 0;min-width:220px;">
+        <img src="../assets/projects/orex-sphere-cone-geometry.png" alt="Dimensioned 50-degree sphere-cone reentry body geometry with nose radius 1350 mm and shoulder radius 100 mm." style="width:100%;display:block;background:#fff;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Dimensioned 50&deg; sphere-cone geometry used for the reconstruction (source: NASA)</figcaption>
+      </figure>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;align-items:center;">
+      <div>
+        <p><strong>Grid.</strong> I'm building a structured axisymmetric grid in Pointwise for the US3D
+           simulations. Because OREX is axisymmetric, a 2D grid captures the forebody flow at a fraction
+           of the cost of a full 3D mesh. Cells are packed toward the wall to resolve the thin shock
+           layer, where the plasma forms.</p>
+        <p>I check quality with equiangle skewness, where 0 is a perfect cell and 1 is fully degenerate.
+           The grid stays low across the nose and forebody, where the flow matters most, and rises toward
+           the shoulder and outer boundary.</p>
+      </div>
+      <figure style="margin:0;justify-self:center;max-width:420px;width:100%;">
+        <img src="../assets/projects/orex-grid-skewness.png" alt="Structured axisymmetric Pointwise grid around the OREX forebody and shoulder, colored by equiangle skewness." style="width:100%;display:block;border:1px solid var(--border);border-radius:var(--radius);">
+        <figcaption style="font-size:0.8rem;color:var(--text-faint);margin-top:6px;">Structured axisymmetric grid in Pointwise, colored by equiangle skewness</figcaption>
+      </figure>
+    </div>
   </section>
 
   <div class="wrap project-nav">

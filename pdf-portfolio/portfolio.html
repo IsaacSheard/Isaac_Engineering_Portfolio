@@ -82,19 +82,19 @@
 
   /* cover */
   .cover { display: grid; grid-template-columns: 1fr 3.3in; gap: 0.45in; flex: 1; min-height: 0; }
-  .cover h1 { font-size: 78pt; line-height: 0.86; }
+  .cover h1 { font-size: 64pt; line-height: 0.86; }
   .cover h1 span { color: var(--accent); }
   .cover .sub { font-family: var(--mono); font-size: 9pt; letter-spacing: 0.06em; text-transform: uppercase;
-                color: var(--dim); margin: 14px 0 16px; }
-  .contact { font-size: 9pt; line-height: 1.7; }
+                color: var(--dim); margin: 10px 0 10px; }
+  .contact { font-size: 8.6pt; line-height: 1.55; }
   .contact span { font-family: var(--mono); font-size: 7pt; text-transform: uppercase; letter-spacing: 0.08em;
                   color: var(--faint); display: inline-block; width: 0.75in; }
-  .toc { margin-top: 18px; border-top: 2px solid var(--ink); }
-  .toc .row { display: grid; grid-template-columns: 0.35in 1fr auto; gap: 8px; padding: 6px 0;
+  .toc { margin-top: 12px; border-top: 2px solid var(--ink); }
+  .toc .row { display: grid; grid-template-columns: 0.35in 1fr auto; gap: 8px; padding: 2.5px 0;
               border-bottom: 1px solid var(--rule); align-items: baseline; }
   .toc .no { font-family: var(--mono); font-size: 8pt; color: var(--accent); font-weight: 600; }
-  .toc .t { font-weight: 600; font-size: 10pt; }
-  .toc .t small { display: block; font-weight: 400; color: var(--dim); font-size: 8.4pt; }
+  .toc .t { font-weight: 600; font-size: 9.4pt; line-height: 1.3; }
+  .toc .t small { display: block; font-weight: 400; color: var(--dim); font-size: 7.9pt; }
   .toc .org { font-family: var(--mono); font-size: 7.2pt; color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; }
 
   /* more-work page */
@@ -116,9 +116,9 @@
   <div class="cover">
     <div style="display:flex;flex-direction:column;">
       <span class="kicker">Engineering Portfolio · 2026</span>
-      <h1 style="margin-top:10px;">Isaac<br><span>Sheard</span></h1>
+      <h1 style="margin-top:6px;">Isaac<br><span>Sheard</span></h1>
       <div class="sub">B.S. Aerospace Engineering · MIT · May 2028</div>
-      <p class="lead" style="max-width:5.4in;">
+      <p class="lead" style="max-width:5.4in;font-size:10pt;">
         I build hardware that has to work in the real world: autonomous rovers, rocket motor cases,
         competition aircraft, and high-altitude balloon payloads. I own the work end to end, from first-principles
         analysis and CAD to machining, wiring, software, and field testing.
@@ -130,11 +130,14 @@
       </div>
       <div class="toc">
         <div class="row"><span class="no">02</span><span class="t">Autonomous Rovers, Built From Scratch<small>Two rovers, full-stack integration, sim-to-real autonomy</small></span><span class="org">Skyrun AI</span></div>
-        <div class="row"><span class="no">03</span><span class="t">Carbon Fiber Motor Case FEA<small>Self-taught Ansys ACP model of a &plusmn;54&deg; wound case: ~8 layers for FOS 2</small></span><span class="org">MIT Rocket Team</span></div>
-        <div class="row"><span class="no">04</span><span class="t">Design, Build, Fly: 5th Place<small>RC aircraft sized with VLM + ScanARS, flown at two CG configurations</small></span><span class="org">MIT Unified</span></div>
-        <div class="row"><span class="no">05</span><span class="t">JetJoe Turbojet: Model vs. Test<small>Brayton-cycle model, then a live-fire to 160,000 rpm</small></span><span class="org">MIT Unified</span></div>
-        <div class="row"><span class="no">06</span><span class="t">Star Trek Adventure: 2nd Place<small>Solo autonomous rover, scoring model drove the design</small></span><span class="org">MIT 16.632B</span></div>
-        <div class="row"><span class="no">07</span><span class="t">More Work<small>Hypersonics CFD · HackMIT balloon · RI3D · AGCO · NASA Ames · FRC</small></span><span class="org">Various</span></div>
+        <div class="row"><span class="no">03</span><span class="t">Agents in Space<small>AI agent on a high-altitude balloon in 24 h; I ran the flight side</small></span><span class="org">HackMIT</span></div>
+        <div class="row"><span class="no">04</span><span class="t">Carbon Fiber Motor Case FEA<small>Self-taught Ansys ACP model of a &plusmn;54&deg; wound case: ~8 layers for FOS 2</small></span><span class="org">MIT Rocket Team</span></div>
+        <div class="row"><span class="no">05</span><span class="t">Reentry Blackout Around OREX<small>Reconstructed the capsule geometry and built the Pointwise grid for US3D CFD</small></span><span class="org">MIT Hypersonics</span></div>
+        <div class="row"><span class="no">06</span><span class="t">RI3D@MIT: Head Captain<small>MIT's first Robot in 3 Days: full FRC robot in 72 hours</small></span><span class="org">FIRSTxMIT</span></div>
+        <div class="row"><span class="no">07</span><span class="t">Design, Build, Fly: 5th Place<small>RC aircraft sized with VLM + ScanARS, flown at two CG configurations</small></span><span class="org">MIT Unified</span></div>
+        <div class="row"><span class="no">08</span><span class="t">JetJoe Turbojet: Model vs. Test<small>Brayton-cycle model, then a live-fire to 160,000 rpm</small></span><span class="org">MIT Unified</span></div>
+        <div class="row"><span class="no">09</span><span class="t">Star Trek Adventure: 2nd Place<small>Solo autonomous rover, scoring model drove the design</small></span><span class="org">MIT 16.632B</span></div>
+        <div class="row"><span class="no">10</span><span class="t">More Work<small>AGCO · NASA Ames · Sun tracker · FRC · Skills</small></span><span class="org">Various</span></div>
       </div>
     </div>
     <figure>
@@ -208,6 +211,39 @@
   <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>02</span></div>
 </section>
 
+<!-- ============ AGENTS IN SPACE ============ -->
+<section class="page">
+  <div class="cols">
+    <div>
+      <span class="kicker">HackMIT 2026 · 24-Hour Hackathon</span>
+      <h2>Agents<br>in Space</h2>
+      <p class="lead">An AI agent on a high-altitude balloon: designed, built, launched, and recovered in
+        24 hours. I was the team's aerospace engineer.</p>
+      <dl class="meta">
+        <dt>Role</dt><dd>Balloon, rigging, payload structure, launch &amp; recovery</dd>
+        <dt>Payload</dt><dd>Jetson Orin Nano + ESP32, ~3.6 lb, 1000 g balloon</dd>
+        <dt>Result</dt><dd><b>400+ prompts</b> run at altitude; recovered intact</dd>
+      </dl>
+      <h3>Flight system</h3>
+      <p>Designed both XPS foam payload boxes, all of the rigging (with a laser-cut spreader ring), the
+        balloon sealing system, and the full flight train. Put together the flight-hardware list.</p>
+      <h3>Lift &amp; drift</h3>
+      <p>NOAA winds showed real Atlantic drift risk, with no time to drive farther from the coast. I sized
+        <b>~2&times; the standard 2 lb free lift</b> for a faster ascent and less drift.</p>
+      <h3>Outcome</h3>
+      <p>Launched from Montague, MA. Prompts went up, responses came back over radio with GPS and
+        telemetry, and it landed in Everett, a 10-minute drive from MIT.</p>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1.55fr 1fr;">
+      <figure style="grid-column: 1 / span 3;"><img class="contain" src="../assets/projects/hackmit-flight-summary.jpg" alt=""><figcaption>Flight reconstruction: Montague to Everett, modeled altitude, and the winds that carried it east</figcaption></figure>
+      <figure><img src="../assets/projects/hackmit-launch-team.jpg" alt=""><figcaption>Launch day</figcaption></figure>
+      <figure><img src="../assets/projects/hackmit-rigging.jpg" alt="" style="object-position: 50% 35%;"><figcaption>Rigging the flight train</figcaption></figure>
+      <figure><img src="../assets/projects/hackmit-mission-control.png" alt="" style="object-position: 30% 50%;"><figcaption>Mission control telemetry</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>03</span></div>
+</section>
+
 <!-- ============ ROCKET TEAM FEA ============ -->
 <section class="page">
   <div class="cols">
@@ -241,7 +277,77 @@
       <figure style="grid-column: 1 / span 2;"><img src="../assets/projects/rocket-fea-modal-mode1.png" alt=""><figcaption>Mode 1, 50.7 Hz: modes come in matching pairs, as an axisymmetric tube should</figcaption></figure>
     </div>
   </div>
-  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>03</span></div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>04</span></div>
+</section>
+
+<!-- ============ HYPERSONICS ============ -->
+<section class="page">
+  <div class="cols">
+    <div>
+      <span class="kicker">MIT Hypersonics Lab · Sep 2026 – Present</span>
+      <h2>Reentry Blackout<br>Around OREX</h2>
+      <p class="lead">Predicting electron density and radio blackout around JAXA's OREX reentry capsule
+        with US3D CFD.</p>
+      <dl class="meta">
+        <dt>Role</dt><dd>Hypersonics researcher</dd>
+        <dt>Vehicle</dt><dd>OREX, a 50&deg; sphere-cone</dd>
+        <dt>Tools</dt><dd>US3D, Pointwise, Tecplot</dd>
+      </dl>
+      <h3>The problem</h3>
+      <p>During reentry the shock layer gets hot enough to ionize the air, and the plasma blocks radio:
+        the communications blackout. The goal is to predict electron density around OREX, and from it
+        the blackout.</p>
+      <h3>Geometry</h3>
+      <p>Reconstructed the vehicle from JAXA's layout drawing and NASA's dimensioned geometry:
+        <b>R<sub>N</sub> 1350 mm</b> nose, <b>&oslash;3400 mm</b> body, R<sub>c</sub> 100 mm shoulder.
+        Verified against published data.</p>
+      <h3>Grid</h3>
+      <p>Building a structured axisymmetric grid in Pointwise, packed toward the wall to resolve the thin
+        shock layer. Equiangle skewness stays low across the nose and forebody and rises toward the
+        shoulder.</p>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1.43fr 1fr; grid-template-rows: 1.4fr 1fr;">
+      <figure style="grid-column: 1 / span 2;"><img class="contain" src="../assets/projects/orex-jaxa-layout.png" alt="" style="background:#fff;"><figcaption>OREX layout drawing (source: JAXA)</figcaption></figure>
+      <figure><img class="contain" src="../assets/projects/orex-sphere-cone-geometry.png" alt="" style="background:#fff;"><figcaption>50&deg; sphere-cone geometry (source: NASA)</figcaption></figure>
+      <figure><img src="../assets/projects/orex-grid-skewness.png" alt=""><figcaption>My Pointwise grid, colored by equiangle skewness</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>05</span></div>
+</section>
+
+<!-- ============ RI3D ============ -->
+<section class="page">
+  <div class="cols">
+    <div>
+      <span class="kicker">FIRSTxMIT · Robot in 3 Days · Jan 2026</span>
+      <h2>RI3D@MIT:<br>Head Captain</h2>
+      <p class="lead">MIT's first Robot in 3 Days: a full FRC robot for the 2026 game, REBUILT, in the
+        72 hours after kickoff.</p>
+      <dl class="meta">
+        <dt>Role</dt><dd>Head Captain: led the captain team and ~25 students</dd>
+        <dt>Robot</dt><dd>Swerve drive, Kraken motors, Onshape CAD</dd>
+        <dt>Result</dt><dd>Working robot in <b>72 h</b>; demo at the 2026 U.S. Governor's Cup</dd>
+      </dl>
+      <h3>Standing it up</h3>
+      <p>Set up planning meetings with the other captains, worked out purchases against our budget,
+        emailed local companies for donated sheet metal and plywood, and fronted <b>~$4,500</b> for
+        time-critical parts.</p>
+      <h3>Strategy</h3>
+      <p>Led the kickoff strategy session. The must-haves were an L1 climb, a shooter without vision, and
+        8+ game pieces of storage. We designed around capacity: a 27&times;27 in swerve frame, an
+        over-bumper intake, a slanted hopper, and a fixed shooter.</p>
+      <h3>Outcome</h3>
+      <p>Functional robot within 72 hours. The climber scaled back from an L3 stretch goal to L1, then
+        broke on rivets that hadn't been set properly.</p>
+    </div>
+    <div class="gallery" style="grid-template-columns: 1.1fr 1fr 1fr; grid-template-rows: 1.35fr 1fr;">
+      <figure style="grid-column: 1 / span 2;"><img src="../assets/projects/ri3d-robot-hero.jpg" alt="" style="object-position: 50% 60%;"><figcaption>With the finished robot</figcaption></figure>
+      <figure><img class="contain" src="../assets/projects/ri3d-cad-render.png" alt=""><figcaption>Final robot CAD</figcaption></figure>
+      <figure style="grid-column: 1 / span 2;"><img src="../assets/projects/ri3d-strategy-stream.jpg" alt="" style="object-position: 0% 40%;"><figcaption>Leading the kickoff strategy session (livestream)</figcaption></figure>
+      <figure><img src="../assets/projects/ri3d-govcup-favorite.jpg" alt="" style="object-position: 40% 30%;"><figcaption>Governor's Cup pits</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>06</span></div>
 </section>
 
 <!-- ============ 3 · UEFC ============ -->
@@ -275,7 +381,7 @@
       <figure style="grid-column: 1 / span 2;"><img class="contain" src="../assets/projects/uefc-static-margin-trim.png" alt=""><figcaption>Elevator trim &amp; static margin vs. payload CG shift</figcaption></figure>
     </div>
   </div>
-  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>04</span></div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>07</span></div>
 </section>
 
 <!-- ============ 4 · JETJOE ============ -->
@@ -312,7 +418,7 @@
       <figure><img class="contain" src="../assets/projects/jetjoe-thrust-vs-altitude.png" alt=""><figcaption>Static thrust vs. altitude</figcaption></figure>
     </div>
   </div>
-  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>05</span></div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>08</span></div>
 </section>
 
 <!-- ============ 5 · STAR TREK ============ -->
@@ -347,7 +453,7 @@
       <figure><img class="contain" src="../assets/projects/startrek-chassis-cad.png" alt=""><figcaption>4WD chassis redesign, electronics moved to rear panel</figcaption></figure>
     </div>
   </div>
-  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>06</span></div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>09</span></div>
 </section>
 
 <!-- ============ 6 · MORE WORK ============ -->
@@ -355,36 +461,6 @@
   <span class="kicker">Also</span>
   <h2>More Work</h2>
   <div class="grid3">
-    <div class="card">
-      <div class="when">Sep 2026 – Present</div>
-      <h4>Hypersonic Reentry Plasma</h4>
-      <div class="org">MIT Hypersonics Research Lab</div>
-      <ul>
-        <li>Modeling electron density and radio blackout around the OREX spacecraft with US3D CFD</li>
-        <li>Reconstructed OREX geometry from NASA/JAXA drawings and verified it against published data</li>
-        <li>Building a structured axisymmetric grid in Pointwise</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="when">Sep 2026 · 24 hours</div>
-      <h4>Agents in Space</h4>
-      <div class="org">HackMIT</div>
-      <ul>
-        <li>Team's balloon lead: designed the rigging, payload boxes, and launch for a Jetson AI-agent payload in 24 h</li>
-        <li>Used NOAA winds to flag Atlantic drift risk; sized ~2× standard free lift to cut drift</li>
-        <li>Recovered within a 10-minute drive of MIT</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="when">Oct 2025 – Present</div>
-      <h4>RI3D@MIT</h4>
-      <div class="org">FIRSTxMIT · Head Captain</div>
-      <ul>
-        <li>Head Captain of MIT's first Ri3D; led the captains and ~25 students through CAD, design reviews, and software</li>
-        <li>Fully functional robot within 72 hours of kickoff</li>
-        <li>Fronted ~$4,500 for time-critical parts and secured donated materials</li>
-      </ul>
-    </div>
     <div class="card">
       <div class="when">Summers 2024 &amp; 2025</div>
       <h4>Embedded Software</h4>
@@ -435,7 +511,7 @@
   <p style="font-family:var(--mono);font-size:7.6pt;color:var(--dim);margin-top:auto;padding-bottom:4px;">
     Full write-ups and more photos → isaacsheard.github.io/Isaac_Engineering_Portfolio
   </p>
-  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>07</span></div>
+  <div class="foot"><span>ISAAC SHEARD · ENGINEERING PORTFOLIO</span><span>10</span></div>
 </section>
 
 </body>
